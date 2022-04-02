@@ -4,7 +4,7 @@
   "description": "Advanced node.js course with TDD, clean architecture and consumption of third-party apis.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": " rimraf  dist && tsc"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/trajanovinicius/advanced-node/issues"
   },
-  "homepage": "https://github.com/trajanovinicius/advanced-node#readme"
+  "homepage": "https://github.com/trajanovinicius/advanced-node#readme",
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "dependencies": {
+    "rimraf": "^3.0.2"
+  }
 }
