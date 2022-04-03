@@ -4,6 +4,7 @@
   "description": "Advanced node.js course with TDD, clean architecture and consumption of third-party apis.",
   "main": "index.js",
   "scripts": {
+    "start" : "node dist/main/api",
     "build": " rimraf  dist && tsc"
   },
   "repository": {
