@@ -7,7 +7,10 @@
     "start": "node dist/main/api",
     "build": " rimraf  dist && tsc -p tsconfig-build.json",
     "lint": "eslint .",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "test": "jest --passWithNoTests --no-chache --runInBand",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage"
   },
   "repository": {
     "type": "git",
@@ -21,11 +24,14 @@
   },
   "homepage": "https://github.com/trajanovinicius/advanced-node#readme",
   "devDependencies": {
+    "@types/jest": "^27.4.1",
     "@types/module-alias": "^2.0.1",
     "@types/node": "^17.0.23",
     "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",
     "eslint": "^8.12.0",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4",
     "typescript": "^4.6.3"
   },
   "engines": {
