@@ -5,10 +5,10 @@ module.exports = {
   coverageDirectory: "coverage",
   coverageProvider: "babel",
   moduleNameMapper: {
-    "@/tests/(.+)": "<rootDir/tests/$1>",
-    "@/(.+)": "<rootDir/src/$1>",
+    "@/tests/(.+)": "<rootDir>/tests/$1",
+    "@/(.+)": "<rootDir>/src/$1",
   },
-  roots: ["<rootDir>/tests"],
+  roots: ["<rootDir>/src", "<rootDir>/tests"],
   collectCoverage: true,
 
   transform: {

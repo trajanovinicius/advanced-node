@@ -15,7 +15,7 @@
     "prepare": "husky install"
   },
   "repository": {
-    "type": "git",
+    "type": "git", 
     "url": "git+https://github.com/trajanovinicius/advanced-node.git"
   },
   "keywords": [],
@@ -37,7 +37,7 @@
     "jest-mock-extended": "^2.0.5",
     "lint-staged": "^12.3.7",
     "ts-jest": "^27.1.4",
-    "typescript": "^4.6.3"
+    "typescript": "^4.3.5"
   },
   "engines": {
     "node": "16.x"
