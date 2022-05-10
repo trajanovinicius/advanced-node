@@ -15,7 +15,7 @@
     "prepare": "husky install"
   },
   "repository": {
-    "type": "git", 
+    "type": "git",
     "url": "git+https://github.com/trajanovinicius/advanced-node.git"
   },
   "keywords": [],
