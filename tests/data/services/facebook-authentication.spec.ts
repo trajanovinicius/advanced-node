@@ -1,9 +1,6 @@
 //Utilizando comand patterns para deixar o código mais bem escrito.
 import { LoadFacebookUserApi } from "@/data/contracts/apis";
-import {
-  LoadUserAccountRepository,
-  CreateFacebookAccountRepository,
-} from "@/data/contracts/repos";
+import { LoadUserAccountRepository, CreateFacebookAccountRepository, } from "@/data/contracts/repos";
 import { FacebookAuthenticationService } from "../../../src/data/services/facebook-authentication";
 import { AuthenticationError } from "../../../src/domain/errors";
 
@@ -11,9 +8,7 @@ import { mock, MockProxy } from "jest-mock-extended";
 
 describe("FacebookAuthenticationService", () => {
   let facebookApi: MockProxy<LoadFacebookUserApi>;
-  let userAccountRepo: MockProxy<
-    LoadUserAccountRepository & CreateFacebookAccountRepository
-  >;
+  let userAccountRepo: MockProxy<LoadUserAccountRepository & CreateFacebookAccountRepository>;
   let sut: FacebookAuthenticationService;
   const token = "any_token";
 
@@ -31,9 +26,7 @@ describe("FacebookAuthenticationService", () => {
   it("should call LoadFacebookUserApi with correct params", async () => {
     await sut.perform({ token });
 
-    expect(facebookApi.loadUser).toHaveBeenCalledWith({
-      token,
-    });
+    expect(facebookApi.loadUser).toHaveBeenCalledWith({token});
     expect(facebookApi.loadUser).toBeCalledTimes(1);
   });
 
@@ -48,13 +41,11 @@ describe("FacebookAuthenticationService", () => {
   it("Should call LoadUserAccountRepo when LoadFacebookUserApi returns data", async () => {
     await sut.perform({ token });
 
-    expect(userAccountRepo.load).toHaveBeenCalledWith({
-      email: "any_fb_email",
-    });
+    expect(userAccountRepo.load).toHaveBeenCalledWith({email: "any_fb_email"});
     expect(userAccountRepo.load).toBeCalledTimes(1);
   });
 
-  it("Should call   CreateUserAccountRepo when LoadUserAccountRepo returns undefinde", async () => {
+  it("Should call CreateFacebookAccountRepo when LoadUserAccountRepo returns undefined", async () => {
     userAccountRepo.load.mockResolvedValueOnce(undefined);
 
     await sut.perform({ token });
@@ -67,3 +58,5 @@ describe("FacebookAuthenticationService", () => {
     expect(userAccountRepo.createFromFacebook).toBeCalledTimes(1);
   });
 });
+
+
