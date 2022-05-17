@@ -1,6 +1,6 @@
 //Utilizando comand patterns para deixar o código mais bem escrito.
 import { LoadFacebookUserApi } from "@/data/contracts/apis";
-import { LoadUserAccountRepository, CreateFacebookAccountRepository, } from "@/data/contracts/repos";
+import { LoadUserAccountRepository, CreateFacebookAccountRepository,UpdateFacebookAccountRepository } from "@/data/contracts/repos";
 import { FacebookAuthenticationService } from "../../../src/data/services/facebook-authentication";
 import { AuthenticationError } from "../../../src/domain/errors";
 
@@ -8,7 +8,8 @@ import { mock, MockProxy } from "jest-mock-extended";
 
 describe("FacebookAuthenticationService", () => {
   let facebookApi: MockProxy<LoadFacebookUserApi>;
-  let userAccountRepo: MockProxy<LoadUserAccountRepository & CreateFacebookAccountRepository>;
+  let userAccountRepo: MockProxy<LoadUserAccountRepository & CreateFacebookAccountRepository & UpdateFacebookAccountRepository>; // union type
+  //União do três tipos, não precisamos colocar uma outra depedência
   let sut: FacebookAuthenticationService;
   const token = "any_token";
 
@@ -57,6 +58,21 @@ describe("FacebookAuthenticationService", () => {
     });
     expect(userAccountRepo.createFromFacebook).toBeCalledTimes(1);
   });
-});
+it("Should call UpdateFacebookAccountRepo when LoadUserAccountRepo returns data", async () => {
+  userAccountRepo.load.mockResolvedValueOnce({
+    id: 'any_id', //toda vez que tivermos um campo opcional, provavelmente vamos precisar fazer test com valor e sem valor
+    name: 'any_name'
+  })
+
+  await sut.perform({ token });
+
+  expect(userAccountRepo.updateWithFacebook).toHaveBeenCalledWith({
+    id: 'any_id',
+    name: "any_name",
+    facebookId: "any_fb_id",
+  });
+  expect(userAccountRepo.updateWithFacebook).toHaveBeenCalledTimes(1);
+ });
+})
 
 
